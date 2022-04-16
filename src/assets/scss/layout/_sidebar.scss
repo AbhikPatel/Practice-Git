@@ -1,0 +1,8 @@
+.sidebar{
+    flex: 0 0 $sidebar-width;
+}
+
+.active{
+    border-left: 1px solid $primary;
+    color: $primary;
+}

@@ -10,10 +10,13 @@ import { RouterModule } from '@angular/router';
   declarations: [
     SidebarComponent,
     HeaderComponent,
-    RouterModule
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
+  ],
+  exports:[
+    SidebarComponent
   ]
 })
 export class CoreModule { }
