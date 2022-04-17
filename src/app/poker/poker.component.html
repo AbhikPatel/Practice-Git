@@ -6,12 +6,15 @@
             <i class="bx bxs-heart fs-5"></i>
         </div>
     </div>
-    <button type="button" class="btn btn-success fs-4 rounded-3" (click)="onAdd()"> + </button>
-    <div class="board mt-5">
-        <div class="poker-card bg-white p-3 shadow" *ngFor=" let m of cardDeck">
-            <div class="text-danger flex-column d-flex">
-                <span class="fs-5">{{ m }}</span>
-                <i class="bx bxs-heart fs-5"></i>
+    <button type="button" class="btn btn-success fs-4 rounded-3 me-3" (click)="onAdd()"> + </button>
+    <button type="button" class="btn btn-danger fs-4 rounded-3" (click)="onPop()"> - </button>
+    <div class="d-flex">
+        <div class="position-relative mt-5 ms-5" *ngFor="let m of cardDeck">
+            <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
+                <div class="text-danger flex-column d-flex">
+                    <span class="fs-5">{{ m }}</span>
+                    <i class="bx bxs-heart fs-5"></i>
+                </div>
             </div>
         </div>
     </div>

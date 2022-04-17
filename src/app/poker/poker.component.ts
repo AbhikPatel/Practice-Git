@@ -11,6 +11,7 @@ export class PokerComponent implements OnInit {
   public cardDeck:number[];
   constructor() {
     this.cardNumber = 10;
+    this.cardDeck = [];
   }
 
   ngOnInit(): void {
@@ -22,6 +23,10 @@ export class PokerComponent implements OnInit {
   
   public onAdd(){
     this.cardDeck.push(this.cardNumber);
+  }
+
+  public onPop(){
+    this.cardDeck.pop();
   }
 
 }
