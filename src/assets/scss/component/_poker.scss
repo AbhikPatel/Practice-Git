@@ -1,17 +1,15 @@
 .player {
-
     height: 350px;
+}
+.poker-card {
+    height: 250px;
+    width: 150px;
+    border-radius: 5px;
 
-    .poker-card {
-        height: 250px;
-        width: 150px;
-        border-radius: 5px;
-
-        .hidden {
-            filter: blur(5px);
-        }
-
+    .hidden {
+        filter: blur(5px);
     }
+
 }
 
 .option {
@@ -21,4 +19,8 @@
 .result{
     top: 50%;
     right: 300px;
+}
+
+.current{
+    background-color: green;
 }

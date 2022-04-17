@@ -1,0 +1,50 @@
+<div class="container p-5 h-100 position-relative">
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-success" (click)="onRestart()"> Restart </button>
+    </div>
+    <div class="player">
+        <h3 class="text-primary"> {{ player1Name }} </h3>
+        <div class="d-flex position-relative">
+            <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
+                <div class="text-danger flex-column d-flex">
+                    <span class="fs-5" [ngClass]="hidden ? 'hidden' : ''">{{ default }}</span>
+                </div>
+            </div>
+            <div class="position-relative ms-5" *ngFor="let m of player1">
+                <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
+                    <div class="text-danger flex-column d-flex">
+                        <span class="fs-5">{{ m }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="option d-flex flex-column position-absolute">
+                <button class="btn btn-primary" (click)="onHit()" [disabled]="!current" type="button"> Hit me </button>
+                <button class="btn btn-danger mt-3" (click)="onPass()" [disabled]="!current" type="button"> Pass </button>
+            </div>
+        </div>
+    </div>  
+    <div class="player">
+        <h3 class="text-primary"> {{ player2Name }} </h3>
+        <div class="d-flex mt-3">
+            <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
+                <div class="text-danger flex-column d-flex">
+                    <span class="fs-5" [ngClass]="hidden ? 'hidden' : ''">{{ default2 }}</span>
+                </div>
+            </div>
+            <div class="position-relative ms-5" *ngFor="let m of player2">
+                <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
+                    <div class="text-danger flex-column d-flex">
+                        <span class="fs-5">{{ m }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="option d-flex flex-column position-absolute">
+                <button class="btn btn-primary" (click)="onHit2()" [disabled]="current" type="button"> Hit me </button>
+                <button class="btn btn-danger mt-3" (click)="onPass2()" [disabled]="current" type="button"> Pass </button>
+            </div>
+        </div>
+    </div>  
+    <div class="result position-absolute">
+        <p class="fs-4 text-primary fw-bold"> {{ result }} </p>
+    </div>
+</div>

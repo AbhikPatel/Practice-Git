@@ -1,47 +1,33 @@
-<div class="container p-5 h-100 position-relative">
-    <div class="player">
-        <h3 class="text-primary"> Player 1 </h3>
-        <div class="d-flex mt-3 position-relative">
-            <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
-                <div class="text-danger flex-column d-flex">
-                    <span class="fs-5" [ngClass]="hidden ? 'hidden' : ''">{{ default }}</span>
-                </div>
-            </div>
-            <div class="position-relative ms-5" *ngFor="let m of player1">
-                <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
-                    <div class="text-danger flex-column d-flex">
-                        <span class="fs-5">{{ m }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="option d-flex flex-column position-absolute">
-                <button class="btn btn-primary" (click)="onHit()" type="button"> Hit me </button>
-                <button class="btn btn-danger mt-3" (click)="onPass()" type="button"> Pass </button>
-            </div>
-        </div>
-    </div>  
-    <div class="player">
-        <h3 class="text-primary"> Player 2 </h3>
-        <div class="d-flex mt-3">
-            <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
-                <div class="text-danger flex-column d-flex">
-                    <span class="fs-5" [ngClass]="hidden ? 'hidden' : ''">{{ default2 }}</span>
-                </div>
-            </div>
-            <div class="position-relative ms-5" *ngFor="let m of player2">
-                <div class="poker-card poker-player bg-white p-3 shadow position-absolute">
-                    <div class="text-danger flex-column d-flex">
-                        <span class="fs-5">{{ m }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="option d-flex flex-column position-absolute">
-                <button class="btn btn-primary" (click)="onHit2()" type="button"> Hit me </button>
-                <button class="btn btn-danger mt-3" (click)="onPass()" type="button"> Pass </button>
-            </div>
-        </div>
-    </div>  
-    <div class="result position-absolute">
-        <p class="fs-4 text-primary fw-bold"> {{ result }} </p>
+<div class="container p-5">
+    <h2 class="text-center text-primary"> Welcome to 21 Card Game </h2>
+    <div class="decription p-5 bg-white rounded-3 my-5">
+        <span class="text-danger"> Note: If you have played RESIDENT EVIL 7: BIOHAZARD then skip the Description and Smash that Start Game Button. </span>
+        <ul class="my-3">
+            <li> First of all this game is a 2-Player game so first step for you is get a friend. </li>
+            <li> Enter your Names. </li>
+            <li> Then Start Game. </li>
+            <li> When the Game is Started each player will have a card which contains a number(Which will be hidden). </li>
+            <li> Then when the turn comes you will have 2 Chioces <span class="text-primary">REQUEST A CARD</span> or <span class="text-danger">PASS.</span> </li>
+            <li> <span class="text-primary">REQUEST A CARD</span> will give a card with a number. </li>
+            <li> <span class="text-danger">PASS</span> means no action is taken and passes to another Player.</li>
+            <li> When both the players passes then the final result is done. </li>
+            <li> Final Result means all the number of the card are add on and final result should be under 21. </li>
+            <li> If the summation goes more than 21, then the Player is Eliminated. </li>
+            <li> But if both the Players has less then 21 then its depend upon who has more number. </li>
+            <li> 100 Baat ki 1 Baat :- Get more number but don't go more than 21. </li>
+        </ul>
     </div>
+    <form class="my-3" [formGroup]="residentGroup">
+        <div class="row">
+            <div class="col-6">
+                <label for="player1" class="form-label"> Player 1 </label>
+                <input type="text" class="form-control" name="player1" id="player1" formControlName = 'player1'>
+            </div>
+            <div class="col-6">
+                <label for="player2" class="form-label"> Player 2 </label>
+                <input type="text" class="form-control" name="player2" id="player2" formControlName = 'player2'>
+            </div>
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-success mt-5" [disabled]="!residentGroup.valid" routerLink="/resident/game"> Start Game </button>
+    </form>
 </div>
