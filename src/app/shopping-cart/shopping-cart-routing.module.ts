@@ -5,14 +5,13 @@ import { ShoppingContainerComponent } from './shopping-container/shopping-contai
 const routes: Routes = [
   { path: '', 
     children:[
-      { path:'', redirectTo:'cart', pathMatch:'full'},
-      { path:'cart', component:ShoppingContainerComponent}
+      { path:'', redirectTo:'list', pathMatch:'full'},
+      { path:'list', component:ShoppingContainerComponent }
     ]
-  }
-];
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShoppingRoutingModule { }
+export class ShoppingCartRoutingModule { }
