@@ -13,3 +13,11 @@ $form-floating-height:add(1.5rem, 2.5rem);
 $form-floating-label-transform:   scale(.85) translateY(-1.5rem) translateX(.15rem);
 $form-floating-input-padding-t:   1.625rem;
 $form-floating-input-padding-b:   .625rem;
+
+// input
+$input-btn-focus-box-shadow: 0px;
+$input-btn-border-width: 2px;
+$input-btn-focus-width:.1rem;
+$input-btn-focus-blur: 0;
+$input-btn-focus-box-shadow:    0 0 $input-btn-focus-blur $input-btn-focus-width $input-btn-focus-color;
+
