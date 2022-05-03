@@ -5,3 +5,10 @@ $font-family: 'Poppins', sans-serif;
 
 // Sidebar 
 $sidebar-width:250px;
+
+// form 
+$input-btn-focus-box-shadow: 0px;
+$input-btn-border-width: 2px;
+$input-btn-focus-width:.1rem;
+$input-btn-focus-blur: 0;
+$input-btn-focus-box-shadow:    0 0 $input-btn-focus-blur $input-btn-focus-width $input-btn-focus-color;
