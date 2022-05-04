@@ -9,6 +9,7 @@ import { PrescriptionFormPresentationComponent } from './prescription-form-conta
 import { PrescriptionOverlayPresentationComponent } from './prescription-form-container/prescription-form-presentation/prescription-overlay-presentation/prescription-overlay-presentation.component';
 import { PrescriptionTablePresentationComponent } from './prescription-table-container/prescription-table-presentation/prescription-table-presentation.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PrescriptionRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class PrescriptionModule { }
