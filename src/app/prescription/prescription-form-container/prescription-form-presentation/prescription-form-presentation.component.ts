@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { diseasesModel, medicineModel } from '../../models/medicine.model';
 
 @Component({
   selector: 'app-prescription-form-presentation',
@@ -8,18 +9,21 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class PrescriptionFormPresentationComponent implements OnInit {
 
+  public diseasesGroup:FormGroup;
   public medicineGroup:FormGroup;
-  public medicineData:any[] = [];
   constructor(private fb:FormBuilder) { 
-    this.medicineGroup = this.fb.group(
+    this.diseasesGroup = this.fb.group(
       {
-        exp:[],
-        mail:[],
-        diseases:[],
-        medicine:[],
-        dosage:[],
-        days:[],
-        meal:[],
+        exp:[''],
+        mail:[''],
+        diseases: this.fb.group(
+          {
+            medicinename:['',Validators.required],
+            dosage:['',Validators.required],
+            days:['',Validators.required],
+            meal:['',Validators.required],
+          }
+        )
       }
     )
   }
@@ -28,7 +32,11 @@ export class PrescriptionFormPresentationComponent implements OnInit {
   }
 
   public onAdd(){
-    this.medicineData.push(this.medicineGroup.value)
+    // this.medicineData.push(this.diseasesGroup.value.diseases);
+    // this.medicine.push(this.medicineGroup.value);
+
+    console.log(this.diseasesGroup.value);
+    
   }
 
 }
