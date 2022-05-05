@@ -1,6 +1,6 @@
 <div class="m-5 p-5 bg-white rounded-3 border border-5 border-primary">
     <div class="row g-4">
-        <div class="col-4 pe-5" style="border-right: 1px solid #e4e4e4;">
+        <div class="col-5 pe-5" style="border-right: 1px solid #e4e4e4;">
             <form [formGroup]="diseasesGroup">
                 <div class="mb-3">
                     <input type="date" class="form-control" name="exp" id="exp" placeholder="Expiry Date"
@@ -11,21 +11,18 @@
                         formControlName='mail'>
                 </div>
                 <div class="mb-3">
-                    <select class="form-select" aria-placeholder="Diseases" formControlName='diseases'>
-                        <option value="Fever">Fever</option>
-                        <option value="Headache">Headache</option>
-                        <option value="Cold">Cold</option>
-                    </select>
+                    <ng-select placeholder="custom placeholder" [multiple]="true" [items]="diseases"
+                        bindLabel="item_text" bindValue="item_id" formControlName="diseases"
+                        (change)="onItemSelect($event)">
+                    </ng-select>
                 </div>
             </form>
             <form class="inner mt-5 border border-primary rounded-3 p-4" [formGroup]="medicineGroup">
                 <div class="row g-4">
                     <div class="col-12">
-                        <select class="form-select" aria-placeholder="Medicine" formControlName='medicinename'>
-                            <option value="Paracetamol">Paracetamol</option>
-                            <option value="Lemokhon">Lemokhon</option>
-                            <option value="Jadibuti">Jadibuti</option>
-                        </select>
+                        <ng-select class="form-control" [items]="medicine" bindLabel="item_text" bindValue="item_id"
+                            placeholder="Medicines" formControlName="medicinename">
+                        </ng-select>
                     </div>
                     <div class="col-6">
                         <input type="number" class="form-control" name="dosage" id="dosage" placeholder="Dosage(gms)"
@@ -48,30 +45,29 @@
                     Medicine</button>
             </form>
         </div>
-        <div class="col-8 px-5">
-            <div *ngFor="let m of tableData">
-                <h4>{{m.diseases}} </h4>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Medicine Name</th>
-                            <th scope="col">Dosage</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Meal</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let data of m.medicine">
-                            <td> {{ data.name }} </td>
-                            <td> {{ data.dosage }} </td>
-                            <td> {{ data.days }} </td>
-                            <td> {{ data.meal }} </td>
-                            <td> <i class='bx bxs-pencil pe-2'></i> <i class='bx bxs-trash'></i> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-7 px-5">
+            {{ tableData | json }}
+            <h4 *ngFor="let d of selectedDiseases">{{ d | json }}</h4>
+            <table class="table" *ngFor="let ddd of tableData">
+                <thead>
+                    <tr>
+                        <th scope="col">Medicine Name</th>
+                        <th scope="col">Dosage</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Meal</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of ddd.medicine">
+                        <td> {{ data.name }} </td>
+                        <td> {{ data.dosage }} </td>
+                        <td> {{ data.days }} </td>
+                        <td> {{ data.meal }} </td>
+                        <td> <i class='bx bxs-pencil pe-2'></i> <i class='bx bxs-trash'></i> </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
