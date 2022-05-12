@@ -12,20 +12,19 @@ export class PrescriptionFormPresentationComponent implements OnInit {
   public medicineGroup: FormGroup;
   public tableData:any[] = [];
   constructor(private fb: FormBuilder) {
-   this.medicineGroup = this.fb.group(
-     {
-       medicinename:[''],
-       dosage:[''],
-       days:[''],
-       meal:[''],
-     }
-   )
 
    this.diseasesGroup = this.fb.group(
      {
        exp:[''],
        mail:[''],
-       diseases:[''],
+       diseasesname:[''],
+       medicine: this.fb.group(
+        {
+          medicinename:[''],
+          dosage:[''],
+          days:[''],
+          meal:[''],
+        })
      }
    )
   }
@@ -34,57 +33,56 @@ export class PrescriptionFormPresentationComponent implements OnInit {
   }
 
   public onAdd() {
-    this.tableData.push(this.diseasesGroup.value.diseases)
-    console.log(this.tableData[0]);
-    
+    // this.tableData.push(this.diseasesGroup.value.diseases);
+    this.tableData = this.diseasesGroup.value
   }
 
-  // tableData: any[] = [
-  //   {
-  //     "diseases": 'fever',
-  //     "medicine": [
-  //       {
-  //         'name': 'para',
-  //         'dosage': 50,
-  //         'days': 3,
-  //         'meal': 'after'
-  //       },
-  //       {
-  //         'name': 'alpha',
-  //         'dosage': 70,
-  //         'days': 3,
-  //         'meal': 'after'
-  //       },
-  //       {
-  //         'name': 'beta',
-  //         'dosage': 1000,
-  //         'days': 1,
-  //         'meal': 'after'
-  //       },
-  //     ]
-  //   },
-  //   {
-  //     "diseases": 'headache',
-  //     "medicine": [
-  //       {
-  //         'name': 'para',
-  //         'dosage': 50,
-  //         'days': 3,
-  //         'meal': 'after'
-  //       },
-  //       {
-  //         'name': 'alpha',
-  //         'dosage': 70,
-  //         'days': 3,
-  //         'meal': 'after'
-  //       },
-  //       {
-  //         'name': 'beta',
-  //         'dosage': 1000,
-  //         'days': 1,
-  //         'meal': 'after'
-  //       },
-  //     ]
-  //   }
-  // ]
+  statisData: any[] = [
+    {
+      "diseases": 'fever',
+      "medicine": [
+        {
+          'name': 'para',
+          'dosage': 50,
+          'days': 3,
+          'meal': 'after'
+        },
+        {
+          'name': 'alpha',
+          'dosage': 70,
+          'days': 3,
+          'meal': 'after'
+        },
+        {
+          'name': 'beta',
+          'dosage': 1000,
+          'days': 1,
+          'meal': 'after'
+        },
+      ]
+    },
+    {
+      "diseases": 'headache',
+      "medicine": [
+        {
+          'name': 'para',
+          'dosage': 50,
+          'days': 3,
+          'meal': 'after'
+        },
+        {
+          'name': 'alpha',
+          'dosage': 70,
+          'days': 3,
+          'meal': 'after'
+        },
+        {
+          'name': 'beta',
+          'dosage': 1000,
+          'days': 1,
+          'meal': 'after'
+        },
+      ]
+    }
+  ]
 }
