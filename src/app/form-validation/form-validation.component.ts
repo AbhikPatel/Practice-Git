@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidationsService } from './validations.service';
 
 @Component({
   selector: 'app-form-validation',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormValidationComponent implements OnInit {
 
-  constructor() { }
+  public userdata:any[] = [];
+  constructor(private service:ValidationsService) { }
 
   ngOnInit(): void {
+    this.service.getData().subscribe(data => {
+      this.userdata = data;
+    })
   }
 
 }
