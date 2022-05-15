@@ -1,0 +1,12 @@
+<div class="patient-box bg-white rounded-3 shadow h-100">
+    <div class="patient-data p-4 border border-bottom" style="cursor: pointer;" *ngFor="let data of _patientList" (click)="onpatient(data.id)" [ngClass]="data.id === selected ? 'selected' : ''">
+        <div class="d-flex justify-content-between">
+            <span class="fw-bold"> {{data.name}} </span>
+            <span class="text-muted" style="font-size: 0.8rem;"> {{data.time}} </span>
+        </div>
+        <div class="d-flex d-flex justify-content-between pt-2">
+            <span class="text-muted fw-bold" style="font-size: 0.8rem;"> {{data.gender}} &#8226; {{data.age}} yrs</span>
+            <span class="text-muted" style="font-size: 0.8rem;"> {{data.mobile}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.selected{
+    background-color: #f3fcff;
+}
+
+.prescripton-diseases{
+    background-color: #e7f2f5;
+    // z-index: 9999;
+    
+    .prescription-medicine{
+        z-index: -10;
+        border-color: #e7f2f5;
+        border-radius: 10px;
+        left: 0;
+        top: 20px;
+    }
+}
