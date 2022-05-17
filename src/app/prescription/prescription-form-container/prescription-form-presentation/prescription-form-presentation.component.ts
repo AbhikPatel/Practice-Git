@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Medicine, Prescription, SelectedMedicine } from '../../models/medicine.model';
 
 @Component({
   selector: 'app-prescription-form-presentation',
@@ -8,162 +8,173 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./prescription-form-presentation.component.scss']
 })
 export class PrescriptionFormPresentationComponent implements OnInit {
-  diseases = [
-    { item_id: 1, item_text: 'Headache' },
-    { item_id: 2, item_text: 'Stomachache' },
-    { item_id: 3, item_text: 'Fever' },
-    { item_id: 4, item_text: 'Cold' },
-  ];
-  medicine: any = [];
-  selectedItems = [];
-  dropdownSettings: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'item_id',
-    textField: 'item_text',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 3,
-    allowSearchFilter: true
-  };
-  onItemSelect(item: any) {
-    console.log(item);
-    console.log(this.diseasesGroup);
-    this.medicine = this.getMedicines(this.diseasesGroup.value.diseases);
-    this.selectedDiseases.add(item);
-  }
+  diseaseGroup: FormGroup;
+  medicineGroup: FormGroup;
 
-  meds = [
-    { item_id: 1, item_text: 'Paracetamol0', disease_id: 2 },
-    { item_id: 2, item_text: 'Paracetamol1', disease_id: 2 },
-    { item_id: 3, item_text: 'Paracetamol2', disease_id: 2 },
-    { item_id: 4, item_text: 'Paracetamol3', disease_id: 3 },
-    { item_id: 5, item_text: 'Paracetamol4', disease_id: 4 },
-    { item_id: 6, item_text: 'Paracetamol5', disease_id: 4 },
-    { item_id: 7, item_text: 'Paracetamol6', disease_id: 1 },
-    { item_id: 8, item_text: 'Paracetamol7', disease_id: 1 },
-    { item_id: 9, item_text: 'Paracetamol8', disease_id: 1 },
-  ];
+  prescription: Prescription;
 
-  getMedicines(diseases: any) {
-    return this.meds.filter((medicine) => {
-      return diseases.includes(medicine.disease_id);
-    });
-  }
-
-  public diseasesGroup: FormGroup;
-  public medicineGroup: FormGroup;
-  constructor(private fb: FormBuilder, private _cdr: ChangeDetectorRef) {
-    this.medicineGroup = this.fb.group(
-      {
-        medicinename: [null],
-        dosage: [''],
-        days: [''],
-        meal: [''],
-      }
-    )
-
-    this.diseasesGroup = this.fb.group(
-      {
-        exp: [''],
-        mail: [''],
-        diseases: [null],
-      }
-    )
-  }
-
-  ngOnInit(): void {
-  }
-  selectedMedicines: any = [];
-  selectedDiseases: any = new Set();
-  public onAdd() {
-    // console.log(this.diseasesGroup.value.diseases);
-    // console.log(this.medicineGroup.value.medicinename);
-    // this.tableData.push(this.diseasesGroup.value.diseases)
-    // console.log(this.tableData[0]);
-    // this.selectedDiseases = new Set();
-    this.diseasesGroup.value.diseases.forEach((disease: number) => {
-      this.selectedDiseases.add(this.diseases.find((d) => d.item_id === disease));
-    });
-
-    let m = this.selectedMedicines.find((med: any) => {
-      return this.medicineGroup.value.medicinename === med.id;
-    });
-    if (!m) {
-      let selectedMed = this.meds.find((med: any) => {
-        return med.item_id === this.medicineGroup.value.medicinename;
-      });
-      console.log(selectedMed);
-      let dddd = this.diseases.find((val) => val.item_id === selectedMed?.disease_id);
-      let newM = {
-        name: selectedMed?.item_text,
-        id: selectedMed?.item_id,
-        dosage: this.medicineGroup.value.dosage,
-        days: this.medicineGroup.value.days,
-        meal: this.medicineGroup.value.meal
-      };
-      let tData = this.tableData.find((tdata: any) => tdata.disease === dddd?.item_text);
-      tData.medicine.push(newM);
-      this.selectedMedicines.push(newM);
-    } else {
-      m;
-    }
-    this.selectedDiseases.forEach((disease: any) => {
-      // console.log(disease);
-      this.tableData.push({ disease: disease.item_text, medicine: [] });
-    })
-
-    console.log('meds', this.selectedMedicines);
-    console.log('disease', this.selectedDiseases);
-    console.log(this.tableData);
-    this._cdr.markForCheck();
-  }
-
-  tableData: any = [
+  timings: any = [
     {
-      "disease": 'fever',
-      "medicine": [
-        {
-          'name': 'para',
-          'dosage': 50,
-          'days': 3,
-          'meal': 'after'
-        },
-        {
-          'name': 'alpha',
-          'dosage': 70,
-          'days': 3,
-          'meal': 'after'
-        },
-        {
-          'name': 'beta',
-          'dosage': 1000,
-          'days': 1,
-          'meal': 'after'
-        },
-      ]
+      id: 0,
+      value: 'Mo',
+      selected: false,
     },
     {
-      "disease": 'headache',
-      "medicine": [
-        {
-          'name': 'para',
-          'dosage': 50,
-          'days': 3,
-          'meal': 'after'
-        },
-        {
-          'name': 'alpha',
-          'dosage': 70,
-          'days': 3,
-          'meal': 'after'
-        },
-        {
-          'name': 'beta',
-          'dosage': 1000,
-          'days': 1,
-          'meal': 'after'
-        },
-      ]
+      id: 1,
+      value: 'Af',
+      selected: false,
+    },
+    {
+      id: 2,
+      value: 'Ev',
+      selected: false,
+    },
+    {
+      id: 3,
+      value: 'Ni',
+      selected: false,
+    },
+  ];
+
+  diseases = [
+    {
+      id: 1,
+      name: 'Headache',
+    },
+    {
+      id: 2,
+      name: 'Stomachache',
+    },
+    {
+      id: 3,
+      name: 'Fever',
+    },
+    {
+      id: 4,
+      name: 'Cold',
+    },
+  ];
+
+  medicines: Medicine[] = [
+    {
+      id: 1,
+      name: 'Paracetamol0',
+      diseasesId: 2,
+      disabled: false,
+    },
+    {
+      id: 2,
+      name: 'Paracetamol1',
+      diseasesId: 2,
+      disabled: false,
+    },
+    {
+      id: 3,
+      name: 'Paracetamol2',
+      diseasesId: 2,
+      disabled: false,
+    },
+    {
+      id: 4,
+      name: 'Paracetamol3',
+      diseasesId: 3,
+      disabled: false,
+    },
+    {
+      id: 5,
+      name: 'Paracetamol4',
+      diseasesId: 4,
+      disabled: false,
+    },
+    {
+      id: 6,
+      name: 'Paracetamol5',
+      diseasesId: 4,
+      disabled: false,
+    },
+    {
+      id: 7,
+      name: 'Paracetamol6',
+      diseasesId: 1,
+      disabled: false,
+    },
+    {
+      id: 8,
+      name: 'Paracetamol7',
+      diseasesId: 1,
+      disabled: false,
+    },
+    {
+      id: 9,
+      name: 'Paracetamol8',
+      diseasesId: 1,
+      disabled: false,
+    },
+  ];
+
+  filteredMedicines: Medicine[] = [];
+
+  constructor(private _fb: FormBuilder) {
+    this.diseaseGroup = this._fb.group({
+      patientEmailId: [null],
+      patientMobile: [null],
+      expDate: [null],
+      diseases: [null],
+    });
+
+    this.medicineGroup = this._fb.group({
+      medicineId: [null],
+      medicineDosage: [null],
+      medicineDays: [null],
+      beforeAfter: [null],
+      medicineTiming: [null],
+    });
+  }
+
+  ngOnInit(): void { }
+
+  getMedicines(diseases: number[]) {
+    return this.medicines.filter((medicine: Medicine) => diseases.includes(medicine.diseasesId));
+  }
+
+  removeMedicine(index: number) {
+    this.filteredMedicines.splice(index, 1);
+    return [...this.filteredMedicines];
+  }
+
+  onSelectionChange(item: any) {
+    console.log(item)
+    // this.selectedDiseases = this.diseaseGroup.value.diseases;
+    this.filteredMedicines = this.getMedicines(this.diseaseGroup.value.diseases);
+    this.prescription.medicines = this.prescription.medicines.filter((medicine: SelectedMedicine) => {
+      return !!this.filteredMedicines.find((filteredMedicine: Medicine) => medicine.medicineId === filteredMedicine.id);
+    })
+  }
+
+  onTimingSelect(ev: any) {
+    this.timings[ev.target.value].selected = ev.target.checked;
+    this.medicineGroup.controls['medicineTiming'].setValue(this.timings.map((timing: any) => {
+      if (timing.selected) return timing.value;
+    }).filter((value: any) => value != undefined).join());
+  }
+
+  onAdd() {
+    console.log("Added");
+    if (!this.prescription?.doctorMobileNumber) {
+      this.prescription = new Prescription();
+      this.prescription.doctorMobileNumber = '9879191394';
+      this.prescription.patientMobileNumber = this.diseaseGroup.value.patientMobile;
+      this.prescription.expiryDate = this.diseaseGroup.value.expDate;
+      this.prescription.medicines = [];
     }
-  ]
+
+    this.prescription.medicines.push(this.medicineGroup.value);
+    this.filteredMedicines = this.removeMedicine(this.medicines.findIndex((medicine: Medicine) => medicine.id === this.medicineGroup.value.medicineId));
+    console.log(this.prescription);
+    this.timings = this.timings.map((timing: any) => {
+      timing.selected = false;
+      return timing;
+    })
+    this.medicineGroup.reset();
+  }
 }

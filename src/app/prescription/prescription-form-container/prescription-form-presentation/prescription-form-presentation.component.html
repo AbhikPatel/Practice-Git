@@ -1,73 +1,109 @@
 <div class="m-5 p-5 bg-white rounded-3 border border-5 border-primary">
     <div class="row g-4">
-        <div class="col-5 pe-5" style="border-right: 1px solid #e4e4e4;">
-            <form [formGroup]="diseasesGroup">
-                <div class="mb-3">
-                    <input type="date" class="form-control" name="exp" id="exp" placeholder="Expiry Date"
-                        formControlName='exp'>
+        <div class="pe-5" style="border-right: 1px solid #e4e4e4;">
+            <form [formGroup]="diseaseGroup" class="row g-4">
+                <!-- Email Input -->
+                <div class="form-floating col-12">
+                    <input type="email" formControlName="patientEmailId" class="form-control" id="floatingInput"
+                        placeholder="Patient Email ID" appAutoFocus>
+                    <label for="floatingInput">
+                        <span class="label-floating-text">Patient Email ID</span>
+                    </label>
                 </div>
-                <div class="mb-3">
-                    <input type="email" class="form-control" name="mail" id="mail" placeholder="Patient's Email"
-                        formControlName='mail'>
+                <!-- Mobile Input -->
+                <div class="form-floating col-12">
+                    <input type="text" formControlName="patientMobile" class="form-control" id="floatingInput"
+                        placeholder="Patient Mobile number">
+                    <label for="floatingInput">
+                        <span class="label-floating-text">Patient Mobile Number</span>
+                    </label>
                 </div>
-                <div class="mb-3">
-                    <ng-select placeholder="custom placeholder" [multiple]="true" [items]="diseases"
-                        bindLabel="item_text" bindValue="item_id" formControlName="diseases"
-                        (change)="onItemSelect($event)">
-                    </ng-select>
+                <!-- Expiry Date Input -->
+                <div class="form-floating col-12">
+                    <input type="date" formControlName="expDate" class="form-control" id="floatingInput"
+                        placeholder="Expiry Date">
+                    <label for="floatingInput">
+                        <span class="label-floating-text">Expiry Date</span>
+                    </label>
                 </div>
-            </form>
-            <form class="inner mt-5 border border-primary rounded-3 p-4" [formGroup]="medicineGroup">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <ng-select class="form-control" [items]="medicine" bindLabel="item_text" bindValue="item_id"
-                            placeholder="Medicines" formControlName="medicinename">
+                <!-- Diseases List -->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <ng-select class="form-control form-control-checkbox" [items]="diseases" [closeOnSelect]="false"
+                            bindValue="id" bindLabel="name" [multiple]="true" placeholder="Diseases"
+                            formControlName="diseases" (change)="onSelectionChange($event)">
+                            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                                    [ngModelOptions]="{ standalone : true }" /> {{item.name}}
+                            </ng-template>
                         </ng-select>
                     </div>
-                    <div class="col-6">
-                        <input type="number" class="form-control" name="dosage" id="dosage" placeholder="Dosage(gms)"
-                            formControlName='dosage'>
-                    </div>
-                    <div class="col-6">
-                        <input type="number" class="form-control" name="days" id="days" placeholder="Days"
-                            formControlName='days'>
-                    </div>
-                    <div class="col-12 d-flex">
-                        <input type="radio" name="meal" id="after" value="After" class="form-check-input"
-                            formControlName='meal'>
-                        <label for="after" class="form-check-label mx-3"> After </label>
-                        <input type="radio" name="meal" id="before" value="Before" class="form-check-input"
-                            formControlName='meal'>
-                        <label for="before" class="form-check-label mx-3"> Before </label>
-                    </div>
                 </div>
-                <button type="submit" class="mt-3 w-100 btn btn-primary rounded-3" (click)="onAdd()"> + Add
-                    Medicine</button>
+                <fieldset class="border-2 border p-4 g-3 row" [formGroup]="medicineGroup">
+                    <!-- Medicines List -->
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <ng-select class="form-control form-control-checkbox" [items]="filteredMedicines"
+                                bindValue="id" bindLabel="name" placeholder="Medicines" formControlName="medicineId">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <!-- Dosage Input -->
+                    <div class="form-floating col-6">
+                        <input type="number" formControlName="medicineDosage" class="form-control" id="floatingInput"
+                            placeholder="Dosage">
+                        <label for="floatingInput">
+                            <span class="label-floating-text">Dosage</span>
+                        </label>
+                    </div>
+                    <!-- Days Input -->
+                    <div class="form-floating col-6">
+                        <input type="number" formControlName="medicineDays" class="form-control" id="floatingInput"
+                            placeholder="Days">
+                        <label for="floatingInput">
+                            <span class="label-floating-text">Days</span>
+                        </label>
+                    </div>
+                    <!-- before/after meal Input -->
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="beforeAfter" id="before" value="false"
+                                formControlName="beforeAfter">
+                            <label class="form-check-label text-muted cursor-pointer" for="male">
+                                Before
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="beforeAfter" id="after" value="true"
+                                formControlName="beforeAfter">
+                            <label class="form-check-label text-muted cursor-pointer" for="female">
+                                After
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website:</label>
+                        <div *ngFor="let timing of timings">
+                            <label>
+                                <input type="checkbox" [value]="timing.id" [checked]="timing.selected" (change)="onTimingSelect($event)" />
+                                {{ timing.value }}
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-3 w-100 btn btn-primary rounded-3" (click)="onAdd()"> + Add
+                        Medicine
+                    </button>
+                </fieldset>
             </form>
-        </div>
-        <div class="col-7 px-5">
-            {{ tableData | json }}
-            <h4 *ngFor="let d of selectedDiseases">{{ d | json }}</h4>
-            <table class="table" *ngFor="let ddd of tableData">
+            {{ prescription | json }}
+            <!-- <table>
                 <thead>
                     <tr>
-                        <th scope="col">Medicine Name</th>
-                        <th scope="col">Dosage</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Meal</th>
-                        <th scope="col">Action</th>
+                        <th>
+                            Patient email
+                        </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let data of ddd.medicine">
-                        <td> {{ data.name }} </td>
-                        <td> {{ data.dosage }} </td>
-                        <td> {{ data.days }} </td>
-                        <td> {{ data.meal }} </td>
-                        <td> <i class='bx bxs-pencil pe-2'></i> <i class='bx bxs-trash'></i> </td>
-                    </tr>
-                </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
-</div>
