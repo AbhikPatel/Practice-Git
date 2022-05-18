@@ -8,8 +8,10 @@ import { PrescriptionTableContainerComponent } from './prescription-table-contai
 import { PrescriptionFormPresentationComponent } from './prescription-form-container/prescription-form-presentation/prescription-form-presentation.component';
 import { PrescriptionOverlayPresentationComponent } from './prescription-form-container/prescription-form-presentation/prescription-overlay-presentation/prescription-overlay-presentation.component';
 import { PrescriptionTablePresentationComponent } from './prescription-table-container/prescription-table-presentation/prescription-table-presentation.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -24,8 +26,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     PrescriptionRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule,
+    NgSelectModule,
   ]
 })
 export class PrescriptionModule { }
