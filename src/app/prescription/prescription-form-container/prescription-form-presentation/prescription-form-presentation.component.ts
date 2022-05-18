@@ -169,7 +169,7 @@ export class PrescriptionFormPresentationComponent implements OnInit {
     }
 
     this.prescription.medicines.push(this.medicineGroup.value);
-    this.filteredMedicines = this.removeMedicine(this.medicines.findIndex((medicine: Medicine) => medicine.id === this.medicineGroup.value.medicineId));
+    this.filteredMedicines = this.removeMedicine(this.filteredMedicines.findIndex((medicine: Medicine) => medicine.id === this.medicineGroup.value.medicineId));
     console.log(this.prescription);
     this.timings = this.timings.map((timing: any) => {
       timing.selected = false;
