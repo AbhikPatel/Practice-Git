@@ -1,0 +1,68 @@
+{
+    "patient":[
+        {
+            "id":1,
+            "name":"Otis Miller",
+            "gender":"Male",
+            "age":28,
+            "time":1230,
+            "mobile":9925607945
+        },
+        {
+            "id":2,
+            "name":"Abhishek Patel",
+            "gender":"Male",
+            "age":28,
+            "time":1230,
+            "mobile":9925607945
+        },
+        {
+            "id":3,
+            "name":"Chirag Patel",
+            "gender":"Male",
+            "age":23,
+            "time":1140,
+            "mobile":9925607945
+        },
+        {
+            "id":4,
+            "name":"Ankit Patel",
+            "gender":"Male",
+            "age":21,
+            "time":1230,
+            "mobile":9856475245
+        },
+        {
+            "id":5,
+            "name":"Nirali tandel",
+            "gender":"Female",
+            "age":15,
+            "time":1230,
+            "mobile":9953214587
+        },
+        {
+            "id":6,
+            "name":"Sherya Patel",
+            "gender":"Female",
+            "age":25,
+            "time":1458,
+            "mobile":9953214587
+        },
+        {
+            "id":7,
+            "name":"Pooja Manvani",
+            "gender":"Female",
+            "age":23,
+            "time":1558,
+            "mobile":9953214587
+        },
+        {
+            "id":8,
+            "name":"Aman Patel",
+            "gender":"Male",
+            "age":26,
+            "time":1858,
+            "mobile":8564213568
+        }
+    ]
+}
