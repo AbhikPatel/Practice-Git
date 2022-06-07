@@ -13,22 +13,20 @@ export class FormValidationComponent implements OnInit {
   constructor(private service:ValidationsService, private fb:FormBuilder) { 
     this.testGroup = this.fb.group(
       {
-        first:['',Validators.required],
-        last:['',Validators.required],
-        mail:['',Validators.required],
-        phone:['',Validators.required],
-        age:['',Validators.required],
+        firstname:['',[Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+        lastname:['',[Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+        mail:['',[Validators.required,Validators.email]],
+        phone:['',[Validators.required, Validators.minLength(10)]],
+        age:['',[Validators.required, Validators.maxLength(3)]],
       }
     )
-
-
   }
 
   ngOnInit(): void {
   }
 
-  public getControls(){
-    return this.testGroup['controls']
+  public get getControls(){
+    return this.testGroup['controls'];
   }
   
 
