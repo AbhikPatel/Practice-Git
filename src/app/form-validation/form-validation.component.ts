@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationsService } from './validations.service';
 
 @Component({
@@ -8,13 +9,27 @@ import { ValidationsService } from './validations.service';
 })
 export class FormValidationComponent implements OnInit {
 
-  public userdata:any[] = [];
-  constructor(private service:ValidationsService) { }
+  public testGroup:FormGroup;
+  constructor(private service:ValidationsService, private fb:FormBuilder) { 
+    this.testGroup = this.fb.group(
+      {
+        first:['',Validators.required],
+        last:['',Validators.required],
+        mail:['',Validators.required],
+        phone:['',Validators.required],
+        age:['',Validators.required],
+      }
+    )
+
+
+  }
 
   ngOnInit(): void {
-    this.service.getData().subscribe(data => {
-      this.userdata = data;
-    })
   }
+
+  public getControls(){
+    return this.testGroup['controls']
+  }
+  
 
 }

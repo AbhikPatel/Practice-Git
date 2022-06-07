@@ -1,21 +1,24 @@
-<div class="container p-5">
-    <!-- <form class="border border-primary p-5 rounded-3">
-        <div class="row">
-            <div class="form-floating col-6">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-              </div>
-              <div class="form-floating col-6">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-              </div>
-        </div>
-    </form> -->
-    <div *ngFor="let m of userdata">
-      <p> Name :- {{ m.name }} </p>
-      <p> Age :- {{ m.age }} </p>
-      <div *ngFor="let data of m.hobby">
-        <p> {{ data.hobbyname }} </p>
-      </div>
+<div class="container py-5">
+  <form class="row g-4" [formGroup]="testGroup">
+    <div class="col-6">
+      <label for="first" class="form-label"> First Name </label>
+      <input type="text" name="first" id="first" class="form-control" formControlName = 'first'>
     </div>
+    <div class="col-6">
+      <label for="last" class="form-label"> Last Name </label>
+      <input type="text" name="last" id="last" class="form-control" formControlName = 'last'>
+    </div>
+    <div class="col-12">
+      <label for="email" class="form-label"> Email </label>
+      <input type="mail" name="email" id="email" class="form-control" formControlName = 'mail'>
+    </div>
+    <div class="col-6">
+      <label for="mobile" class="form-label"> Mobile Number </label>
+      <input type="tel" name="mobile" id="mobile" class="form-control" formControlName = 'phone'>
+    </div>
+    <div class="col-6">
+      <label for="age" class="form-label"> Age </label>
+      <input type="number" name="age" id="age" class="form-control" formControlName = 'age'>
+    </div>
+  </form>
 </div>
