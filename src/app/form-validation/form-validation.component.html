@@ -1,21 +1,44 @@
 <div class="container p-5">
-    <!-- <form class="border border-primary p-5 rounded-3">
-        <div class="row">
-            <div class="form-floating col-6">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-              </div>
-              <div class="form-floating col-6">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-              </div>
+  <div class="bg-white p-5 bg-white rounded-3 shadow">
+    <h2 class="text-center text-primary"> Registration form </h2>
+    <form class="row g-4 mt-3" [formGroup]="testGroup">
+      <div class="col-6">
+        <div>
+          <label for="firstname" class="form-label"> First Name<span class="text-danger">*</span> </label>
+          <input type="text" name="firstname" id="firstname" class="form-control" formControlName = 'firstname' [ngClass]="getControls['firstname'].invalid && getControls['firstname'].touched ? 'error' : ''">
+          <span class="text-danger" *ngIf="getControls['firstname']?.errors?.['required'] && getControls['firstname'].touched"> Firstname is required </span>
+          <span class="text-danger" *ngIf="getControls['firstname']?.errors?.['minlength'] && getControls['firstname'].touched"> Min should be 5 </span>
+          <span class="text-danger" *ngIf="getControls['firstname']?.errors?.['maxlength'] && getControls['firstname'].touched"> Max should be 10 </span>
         </div>
-    </form> -->
-    <div *ngFor="let m of userdata">
-      <p> Name :- {{ m.name }} </p>
-      <p> Age :- {{ m.age }} </p>
-      <div *ngFor="let data of m.hobby">
-        <p> {{ data.hobbyname }} </p>
       </div>
-    </div>
+      <div class="col-6">
+        <div>
+          <label for="lastname" class="form-label"> Last Name<span class="text-danger">*</span> </label>
+          <input type="text" name="lastname" id="lastname" class="form-control">
+        </div>
+      </div>
+      <div class="col-12">
+        <div>
+          <label for="mail" class="form-label"> Email<span class="text-danger">*</span> </label>
+          <input type="email" name="mail" id="mail" class="form-control">
+        </div>
+      </div>
+      <div class="col-6">
+        <div>
+          <label for="age" class="form-label"> Age </label>
+          <input type="number" name="age" id="age" class="form-control">
+        </div>
+      </div>
+      <div class="col-6">
+        <div>
+          <label for="phone" class="form-label"> Phone Number </label>
+          <input type="tel" name="phone" id="phone" class="form-control">
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mt-5">
+        <button class="btn btn-danger mx-3" type="reset"> Reset </button>
+        <button class="btn btn-primary" type="submit"> Submit </button>
+      </div>
+    </form>
+  </div>
 </div>

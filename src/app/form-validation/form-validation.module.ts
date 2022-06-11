@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormValidationRoutingModule } from './form-validation-routing.module';
 import { FormValidationComponent } from './form-validation.component';
 import { ValidationsService } from './validations.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ValidationsService } from './validations.service';
   imports: [
     CommonModule,
     FormValidationRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers:[
     ValidationsService
