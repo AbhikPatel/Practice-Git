@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgressService } from './progress.service';
 
 @Component({
   selector: 'app-progress-bar',
@@ -8,19 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class ProgressBarComponent implements OnInit {
 
   public demo:any[];
-  constructor() { 
-    this.demo = [1];
+  constructor(private service:ProgressService) { 
+    this.demo = this.service.currentPage;
   }
 
   ngOnInit(): void {
   }
 
-  public onAdd(){
-    this.demo.push(1);
+  public onReset(){
+    this.service.currentPage = [1];
   }
-
-  public onPop(){
-    this.demo.pop();
-  }
-
 }

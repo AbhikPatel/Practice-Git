@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgressService } from '../progress.service';
 
 @Component({
   selector: 'app-form-one',
@@ -8,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormOneComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ProgressService) { }
 
   ngOnInit(): void {
+  }
+
+  public next(){
+    this.service.onNext(2);
+  }
+
+  public previous(){
+    this.service.onPrevious();
   }
 
 }

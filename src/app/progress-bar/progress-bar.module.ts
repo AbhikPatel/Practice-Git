@@ -9,6 +9,7 @@ import { FormThreeComponent } from './form-three/form-three.component';
 import { FormFourComponent } from './form-four/form-four.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProgressService } from './progress.service';
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProgressBarRoutingModule,
     HttpClientModule,
     ReactiveFormsModule
+  ],
+  providers:[
+    ProgressService
   ]
 })
 export class ProgressBarModule { }

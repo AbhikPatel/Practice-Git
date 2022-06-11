@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProgressService {
 
-  constructor() { }
+  public currentPage:any[];
+  constructor() { 
+    this.currentPage = [1];
+  }
+
+  public onNext(id:number){
+    this.currentPage.push(id);
+  }
+
+  public onPrevious(){
+    this.currentPage.pop();
+  }
 }
