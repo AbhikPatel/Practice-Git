@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ProgressService } from './progress.service';
 
@@ -5,6 +6,7 @@ import { ProgressService } from './progress.service';
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: [],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ProgressBarComponent implements OnInit {
 
@@ -17,6 +19,6 @@ export class ProgressBarComponent implements OnInit {
   }
 
   public onReset(){
-    this.service.currentPage = [1];
+    this.service.reset();
   }
 }
