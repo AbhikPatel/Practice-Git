@@ -16,7 +16,8 @@ export class ProgressService {
   public onNext(id:number, value:any){
     this.currentPage.push(id);
     this.currentData$.next(value);
-    this.formData.push(value);
+    this.formData.length < id-1 ? this.formData.push(value) : this.formData.splice(id-2,1,value);
+    // this.formData.push(value);
   }
 
   public onPrevious(){

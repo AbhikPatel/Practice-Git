@@ -30,6 +30,9 @@ export class FormTwoComponent implements OnInit {
 
   public next(){
     this.service.onNext(3,this.twoGroup.value);
+    if(this.service.formData.length > 2){
+      this.service.currentData$.next(this.service.formData[2]);
+    }
   }
 
   public previous(){

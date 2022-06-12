@@ -21,7 +21,6 @@ export class FormOneComponent implements OnInit {
     if(this.service.formData.length != 0){
       this.service.currentData$.subscribe((data) => {
         this.oneGroup.patchValue(data);
-        debugger
       })
     }
   }
@@ -32,7 +31,7 @@ export class FormOneComponent implements OnInit {
   public next(){
     this.service.onNext(2,this.oneGroup.value);
 
-    if(this.service.formData.length > 0){
+    if(this.service.formData){
       this.service.currentData$.next(this.service.formData[1]);
     }
   }
