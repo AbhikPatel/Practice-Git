@@ -1,9 +1,10 @@
 .progress-bar{
     top: 20px;
-    transition: 0.4s all;
+    transition: 0.8s all;
     left: 5px;
     z-index: 1;
     border-bottom: 10px solid #b700c1;
+    border-radius: 10px;
 }
 
 .current{
@@ -33,4 +34,8 @@
 .add100{
     width: 98%;
     transition: 0.4s all;
+}
+
+input.ng-touched.ng-invalid{
+    border: 1px solid red;
 }

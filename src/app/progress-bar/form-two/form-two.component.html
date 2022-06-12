@@ -5,23 +5,30 @@
             <div>
                 <label for="mobile" class="form-label"> Mobile Number </label>
                 <input type="tel" name="mobile" id="mobile" class="form-control" formControlName = 'mobileNumber'>
+                <span class="text-danger mt-2" *ngIf="getControls['mobileNumber']?.errors?.['required'] && getControls['mobileNumber'].touched" > This feild is required </span>
+                <span class="text-danger mt-2" *ngIf="getControls['mobileNumber']?.errors?.['minlength'] && getControls['mobileNumber'].touched" > Minimum should be 10 digits </span>
             </div>
         </div>
         <div class="col-6">
             <div>
                 <label for="age" class="form-label"> Age </label>
                 <input type="number" name="age" id="age" class="form-control" formControlName = 'age'>
+                <span class="text-danger mt-2" *ngIf="getControls['age']?.errors?.['required'] && getControls['age'].touched" > This feild is required </span>
+                <span class="text-danger mt-2" *ngIf="getControls['age']?.errors?.['maxlength'] && getControls['age'].touched" > Maximum should be 3 digits </span>
             </div>
         </div>
         <div class="col-12">
             <div>
                 <label for="mail" class="form-label"> Email </label>
                 <input type="email" name="mail" id="mail" class="form-control" formControlName = 'email'>
+                <span class="text-danger mt-2" *ngIf="getControls['email']?.errors?.['required'] && getControls['email'].touched" > This feild is required </span>
+                <span class="text-danger mt-2" *ngIf="getControls['email']?.errors?.['email'] && getControls['email'].touched" > Invalid Email </span>
+                <span class="text-danger mt-2" *ngIf="getControls['email']?.errors?.['maxlength'] && getControls['email'].touched" > Maximum should be 15 digits </span>
             </div>
         </div>
         <div class="d-flex justify-content-end gap-4 mt-5">
             <button class="btn btn-danger" routerLink="/progress/formone" (click)="previous()"> Previous </button>
-            <button class="btn btn-primary" routerLink="/progress/formthree" (click)="next()"> Next </button>
+            <button class="btn btn-primary" routerLink="/progress/formthree" [disabled]="!twoGroup.valid" (click)="next()"> Next </button>
         </div>
     </form>
 </div>

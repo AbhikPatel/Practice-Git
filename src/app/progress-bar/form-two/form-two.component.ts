@@ -13,9 +13,9 @@ export class FormTwoComponent implements OnInit {
   public twoGroup:FormGroup;
   constructor(private service:ProgressService, private fb:FormBuilder) { 
     this.twoGroup = this.fb.group({
-      mobileNumber:['',[Validators.required]],
-      age:['',[Validators.required]],
-      email:['',[Validators.required]],
+      mobileNumber:['',[Validators.required,Validators.minLength(10)]],
+      age:['',[Validators.required,Validators.maxLength(3)]],
+      email:['',[Validators.required,Validators.email,Validators.maxLength(20)]],
     });
 
     if(this.service.formData){
@@ -38,5 +38,9 @@ export class FormTwoComponent implements OnInit {
   public previous(){
     this.service.onPrevious();
     this.service.currentData$.next(this.service.formData[0]);
+  }
+
+  public get getControls(){
+    return this.twoGroup['controls'];
   }
 }

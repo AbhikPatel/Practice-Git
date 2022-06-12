@@ -1,8 +1,8 @@
 <div class="container p-5 h-100">
     <div class="d-flex justify-content-between position-relative">
-        <div class="position-absolute progress-bar" [ngClass]="{ 'add25' : demo.length > 1 }"
-            [ngClass]="{ 'add50' : demo.length > 2 }" [ngClass]="{ 'add75' : demo.length > 3 }"></div>
-        <span class="rounded-circle currrent fw-bold py-3 px-4 text-bolder" routerLink="/progress/formone" (click)="onReset()" [ngClass]="demo.length > 0 ? 'spot' : 'currrent'">1</span>
+        <div class="position-absolute progress-bar" [ngClass]="{ 'add25' : demo.length == 2 }"
+            [ngClass]="{ 'add50' : demo.length == 3 }" [ngClass]="{ 'add75' : demo.length == 4 }"></div>
+        <span class="rounded-circle currrent fw-bold py-3 px-4 text-bolder" (click)="onReset()" [ngClass]="demo.length > 0 ? 'spot' : 'currrent'">1</span>
         <span class="rounded-circle currrent fw-bold py-3 px-4 text-bolder" [ngClass]="demo.length > 1 ? 'spot' : 'currrent'">2</span>
         <span class="rounded-circle currrent fw-bold py-3 px-4 text-bolder" [ngClass]="demo.length > 2 ? 'spot' : 'currrent'">3</span>
         <span class="rounded-circle currrent fw-bold py-3 px-4 text-bolder" [ngClass]="demo.length > 3 ? 'spot' : 'currrent'">4</span>

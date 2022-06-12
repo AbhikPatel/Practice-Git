@@ -14,8 +14,8 @@ export class FormOneComponent implements OnInit {
   constructor(private service:ProgressService, private fb:FormBuilder) { 
     this.oneGroup = this.fb.group(
       {
-        firstName:['',[Validators.required]],
-        lastName:['',[Validators.required]],
+        firstName:['',[Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
+        lastName:['',[Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
       }
     );
     if(this.service.formData.length != 0){
@@ -34,6 +34,10 @@ export class FormOneComponent implements OnInit {
     if(this.service.formData){
       this.service.currentData$.next(this.service.formData[1]);
     }
+  }
+
+  public get getControls(){
+    return this.oneGroup['controls'];
   }
 
 }

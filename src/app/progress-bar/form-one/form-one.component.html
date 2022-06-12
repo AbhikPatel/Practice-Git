@@ -5,16 +5,22 @@
             <div>
                 <label for="first" class="form-label"> First Name </label>
                 <input type="text" name="first" id="first" class="form-control" formControlName = 'firstName'>
+                <span class="text-danger mt-2" *ngIf="getControls['firstName']?.errors?.['required'] && getControls['firstName'].touched" > This feild is required </span>
+                <span class="text-danger mt-2" *ngIf="getControls['firstName']?.errors?.['minlength'] && getControls['firstName'].touched" > Minimum should be 5 characters </span>
+                <span class="text-danger mt-2" *ngIf="getControls['firstName']?.errors?.['maxlength'] && getControls['firstName'].touched" > Maximum should be 15 characters </span>
             </div>
         </div>
         <div class="col-6">
             <div>
                 <label for="last" class="form-label"> Last Name </label>
                 <input type="text" name="last" id="last" class="form-control" formControlName = 'lastName'>
+                <span class="text-danger mt-2" *ngIf="getControls['lastName']?.errors?.['required'] && getControls['lastName'].touched" > This feild is required </span>
+                <span class="text-danger mt-2" *ngIf="getControls['lastName']?.errors?.['minlength'] && getControls['lastName'].touched" > Minimum should be 5 characters </span>
+                <span class="text-danger mt-2" *ngIf="getControls['lastName']?.errors?.['maxlength'] && getControls['lastName'].touched" > Maximum should be 15 characters </span>
             </div>
         </div>
         <div class="d-flex justify-content-end gap-4 mt-5">
-            <button class="btn btn-primary" routerLink="/progress/formtwo" (click)="next()"> Next </button>
+            <button class="btn btn-primary" routerLink="/progress/formtwo" [disabled]="!oneGroup.valid" (click)="next()"> Next </button>
         </div>
     </form>
 </div>

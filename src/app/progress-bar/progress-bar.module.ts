@@ -10,6 +10,8 @@ import { FormFourComponent } from './form-four/form-four.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressService } from './progress.service';
+import { FinalOverlayComponent } from './final-overlay/final-overlay.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 @NgModule({
@@ -18,13 +20,15 @@ import { ProgressService } from './progress.service';
     FormOneComponent,
     FormTwoComponent,
     FormThreeComponent,
-    FormFourComponent
+    FormFourComponent,
+    FinalOverlayComponent
   ],
   imports: [
     CommonModule,
     ProgressBarRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OverlayModule
   ],
   providers:[
     ProgressService
