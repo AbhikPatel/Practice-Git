@@ -1,0 +1,6 @@
+<app-address-presentation
+    [State] = 'getState$ | async'
+    [City] = 'getCity$ | async'
+    (emitStateId)="emitStateId($event)"
+    [getState]="stateName"
+></app-address-presentation>

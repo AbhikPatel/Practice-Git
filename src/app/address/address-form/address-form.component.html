@@ -1,0 +1,21 @@
+<div class="container p-5">
+    <form class="bg-white p-5 rounded-3 row g-4" [formGroup]="fullForm">
+        <h3 class="text-center mb-4"> Address Form </h3>
+        <div class="col-12">
+            <div>
+                <label for="first" class="form-label"> First Name </label>
+                <input type="text" name="first" id="first" class="form-control" formControlName ='firstName'>
+            </div>
+        </div>
+        <div class="col-12">
+            <div>
+                <label for="last" class="form-label"> Last Name </label>
+                <input type="text" name="last" id="last" class="form-control" formControlName ='lastName'>
+            </div>
+        </div>
+        <app-address-container
+            [stateName]="stateData"
+            [cityName]="cityData"
+        ></app-address-container>
+    </form>
+</div>
