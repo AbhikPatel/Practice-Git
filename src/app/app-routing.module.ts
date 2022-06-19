@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'prescription', loadChildren: () => import('./prescription/prescription.module').then(m => m.PrescriptionModule) },
   { path: 'progress', loadChildren: () => import('./progress-bar/progress-bar.module').then(m => m.ProgressBarModule) },
   { path: 'address', loadChildren: () => import('./address/address.module').then(m => m.AddressModule) },
+  { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
 ];
 
 
