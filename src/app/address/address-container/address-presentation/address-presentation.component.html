@@ -1,0 +1,21 @@
+<form class="row g-4" [formGroup]="addressGroup">
+    <div class="col-12">
+        <div>
+            <label for="state" class="form-label"> State</label>
+            <select class="form-select" aria-label="Default select example" formControlName="state" name="state"
+                id="state" #hello  (change)="onSubmit()">
+                <option *ngFor="let m of State" [value]="m.id" [selected] = "num === m.id ? true : null"> {{ m.name }} </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12">
+        <div>
+            <label for="city" class="form-label"> City</label>
+            <select class="form-select" aria-label="Default select example" formControlName="city" name="city"
+                id="city">
+                <option *ngFor="let m of City, let i = index" value="{{i}}"> {{ m.name }} </option>
+            </select>
+        </div>
+    </div>
+</form>
+<div class="pt-5"> {{ this.addressGroup.value | json }} </div>

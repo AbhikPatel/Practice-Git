@@ -1,0 +1,37 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ProgressBarRoutingModule } from './progress-bar-routing.module';
+import { ProgressBarComponent } from './progress-bar.component';
+import { FormOneComponent } from './form-one/form-one.component';
+import { FormTwoComponent } from './form-two/form-two.component';
+import { FormThreeComponent } from './form-three/form-three.component';
+import { FormFourComponent } from './form-four/form-four.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ProgressService } from './progress.service';
+import { FinalOverlayComponent } from './final-overlay/final-overlay.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+
+
+@NgModule({
+  declarations: [
+    ProgressBarComponent,
+    FormOneComponent,
+    FormTwoComponent,
+    FormThreeComponent,
+    FormFourComponent,
+    FinalOverlayComponent
+  ],
+  imports: [
+    CommonModule,
+    ProgressBarRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    OverlayModule
+  ],
+  providers:[
+    ProgressService
+  ]
+})
+export class ProgressBarModule { }
