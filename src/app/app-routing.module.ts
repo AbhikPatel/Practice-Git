@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'validation', loadChildren: () => import('./form-validation/form-validation.module').then(m => m.FormValidationModule) },
   { path: 'shopping', loadChildren: () => import('./shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule) },
   { path: 'prescription', loadChildren: () => import('./prescription/prescription.module').then(m => m.PrescriptionModule) },
-  { path: 'doctor', loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule) },
   { path: 'progress', loadChildren: () => import('./progress-bar/progress-bar.module').then(m => m.ProgressBarModule) },
   { path: 'address', loadChildren: () => import('./address/address.module').then(m => m.AddressModule) },
 ];

@@ -1,8 +1,0 @@
-<div class="p-3 h-100 d-flex">
-    <div class="patient-box col-6 p-3">
-        <app-my-patient-table-presentation  [patient]="getPatient$ | async" (getId)="getId($event)"></app-my-patient-table-presentation>
-    </div>
-    <div class="patient-box col-6 p-3">
-        <app-my-patient-view-presentation [prescription]="getPrescription$ | async"></app-my-patient-view-presentation>
-    </div>
-</div>
